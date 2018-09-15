@@ -31,10 +31,10 @@ class ArticlesBoundaryCallback(private val cache: ArticlesCache,
     }
 
     private fun getDefaultNews(page: Int) =
-            api.getNews(API_KEY, DEFAULT_SOURCES, DEFAULT_LANGUAGE, DEFAULT_SORT, DEFAULT_PAGESIZE, page)
+            api.getNews(API_KEY, DEFAULT_SOURCES, DEFAULT_LANGUAGE, DEFAULT_SORT, DEFAULT_NETWORK_PAGES_IZE, page)
 
     companion object {
-        private const val DEFAULT_PAGESIZE = 30
+        private const val DEFAULT_NETWORK_PAGES_IZE = 30
         private const val API_KEY = "641b974a714a4946910423a67f938fe1"
         private const val DEFAULT_SOURCES = "usa-today"
         private const val DEFAULT_LANGUAGE = "en"
