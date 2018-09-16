@@ -15,12 +15,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
         val articlesViewModel = ViewModelProviders.of(this).get(ArticlesViewModel::class.java)
-        articlesViewModel.articles.observe(this, Observer {
-            adapter.submitList(it)
-        })
+        articlesViewModel.articles.observe(this, Observer { adapter.submitList(it) })
+        articlesViewModel.networkState.observe(this, Observer { adapter.setNetworkState(it!!) })
     }
 }
 
