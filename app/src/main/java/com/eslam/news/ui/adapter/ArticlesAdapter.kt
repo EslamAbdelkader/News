@@ -3,6 +3,7 @@ package com.eslam.news.ui.adapter
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.eslam.news.R
 import com.eslam.news.model.Article
@@ -27,12 +28,8 @@ class ArticlesAdapter(private val viewModel: ArticlesViewModel) : ListAdapter<Ar
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ArticleViewHolder) {
             val item = getItem(position)
-            holder.bind(item)
-            if (position == 0 || !isSameDate(getItem(position).getDate(), getItem(position - 1).getDate())) {
-                // TODO Show Day Above
-            } else {
-                // Hide Day Above
-            }
+            val previousItem = if(position>0) getItem(position - 1) else null
+            holder.bind(item,position,previousItem)
             holder.star.setOnClickListener {
                 viewModel.toggleFavorite(item)
                 notifyItemChanged(position)

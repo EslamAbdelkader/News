@@ -24,7 +24,7 @@ fun <T> Observable<T>.ioSubscribe() =
 /**
  * Compares two dates
  */
-fun isSameDate(date1: Date, date2: Date): Boolean {
+fun isSameDate(date1: Date?, date2: Date?): Boolean {
     val cal1 = Calendar.getInstance()
     val cal2 = Calendar.getInstance()
     cal1.time = date1

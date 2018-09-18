@@ -28,6 +28,6 @@ data class Article(
     }
 
     companion object {
-        private const val DATE_FORMAT = "YYYY-MM-DD'T'hh:mm:ss'Z'"
+        private const val DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     }
 }
