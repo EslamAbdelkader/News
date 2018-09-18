@@ -22,6 +22,11 @@ open class NewsRepository(private val articlesCache: ArticlesCache,
 
     open val result = Result<Article>(MutableLiveData(), MutableLiveData())
 
+    /**
+     * Loads more articles from network, makes sure one request is in progress on time.
+     * Updates both LiveData of articles and this of NetworkState with the result.
+     * Also keeps track and increases the page number on success.
+     */
     open fun loadMoreArticles() {
         result.networkState.value = NetworkState.loading()
         if (!requestInProgress) {
@@ -40,12 +45,21 @@ open class NewsRepository(private val articlesCache: ArticlesCache,
         }
     }
 
+    /**
+     * Gets favorite articles stored in database
+     */
     open fun getFavoriteArticles() = articlesCache.getFavoriteArticles()
 
+    /**
+     * Stores or deletes articles based on its favorite item
+     */
     open fun updateArticle(article: Article){
         articlesCache.updateArticle(article)
     }
 
+    /**
+     * Helper function for getting news with default parameters
+     */
     private fun getDefaultNews(page: Int) =
             articlesApi.getNews(API_KEY, DEFAULT_SOURCES, DEFAULT_LANGUAGE, DEFAULT_SORT, DEFAULT_NETWORK_PAGES_IZE, page)
 

@@ -4,6 +4,10 @@ import com.eslam.news.model.Article
 import java.util.concurrent.Executor
 
 open class ArticlesCache(private val database: NewsDatabase, private val executor: Executor) {
+
+    /**
+     * Inserts favorite items in database and deletes un-favorite items
+     */
     open fun updateArticle(article: Article) {
         executor.execute {
             if (article.favorite == true)
@@ -13,6 +17,8 @@ open class ArticlesCache(private val database: NewsDatabase, private val executo
         }
     }
 
-    // Gets favorite articles from database
+    /**
+     * Gets favorite articles from database
+     */
     open fun getFavoriteArticles() = database.articlesDao().getArticles()
 }
