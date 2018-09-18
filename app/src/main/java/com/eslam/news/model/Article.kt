@@ -19,6 +19,9 @@ data class Article(
         return other is Article && other.title == title
     }
 
+    /**
+     * Parses and returns publish date as a Java Date object
+     */
     @SuppressLint("SimpleDateFormat")
     fun getDate(): Date {
         return SimpleDateFormat(DATE_FORMAT).parse(publishedAt)
