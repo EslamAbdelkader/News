@@ -1,17 +1,15 @@
 package com.eslam.news.ui
 
-import android.arch.paging.PagedListAdapter
-import android.graphics.Color
-import android.support.v7.util.DiffUtil
+import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.eslam.news.R
 import com.eslam.news.model.Article
 import com.eslam.news.model.NetworkState
+import com.eslam.news.utils.ArticleComparator
 
-class ArticlesAdapter : PagedListAdapter<Article, RecyclerView.ViewHolder>(ARTICLE_COMPARATOR) {
+class ArticlesAdapter(private val viewModel: ArticlesViewModel) : ListAdapter<Article, RecyclerView.ViewHolder>(ArticleComparator) {
     private var networkState: NetworkState = NetworkState.loading()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -24,17 +22,15 @@ class ArticlesAdapter : PagedListAdapter<Article, RecyclerView.ViewHolder>(ARTIC
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ArticleViewHolder) {
-
             val item = getItem(position)
-            if(item?.favorite == true){
-                holder.title.setTextColor(Color.RED)
-            }else{
-                holder.title.setTextColor(Color.BLACK)
+            holder.bind(item)
+            holder.star.setOnClickListener {
+                viewModel.toggleFavorite(item)
+                notifyItemChanged(position)
             }
-            holder.title.text = item?.title
+        } else {
+            (holder as NetworkViewHolder).bind(networkState)
         }
-        else
-            (holder as NetworkViewHolder).progressBar.visibility = View.VISIBLE
     }
 
     private fun hasExtraRow() = networkState.status != NetworkState.Status.SUCCESS
@@ -61,15 +57,5 @@ class ArticlesAdapter : PagedListAdapter<Article, RecyclerView.ViewHolder>(ARTIC
 
     override fun getItemViewType(position: Int): Int {
         return if (hasExtraRow() && position == itemCount - 1) R.layout.network_state_item else R.layout.article_row
-    }
-
-    companion object {
-        private val ARTICLE_COMPARATOR = object : DiffUtil.ItemCallback<Article>() {
-            override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean =
-                    oldItem.title == newItem.title
-
-            override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =
-                    oldItem == newItem
-        }
     }
 }

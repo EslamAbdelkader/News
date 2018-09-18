@@ -1,6 +1,5 @@
 package com.eslam.news.model
 
-import android.arch.lifecycle.LiveData
-import android.arch.paging.PagedList
+import android.arch.lifecycle.MutableLiveData
 
-data class Result<T>(val articles: LiveData<PagedList<T>>, val networkState: LiveData<NetworkState>)
+data class Result<T>(val articles: MutableLiveData<List<T?>>, public val networkState: MutableLiveData<NetworkState>)

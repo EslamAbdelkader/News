@@ -8,11 +8,16 @@ import com.eslam.news.api.NewsApi
 import com.eslam.news.database.ArticlesCache
 import com.eslam.news.database.NewsDatabase
 import com.eslam.news.repository.NewsRepository
+import com.eslam.news.ui.ViewModelFactory
 import java.util.concurrent.Executors
 
 object Injection {
 
     lateinit var application: Application
+
+    private var newsRepository: NewsRepository? = null
+
+    object LOCK
 
     private fun provideSharedPreferences(): SharedPreferences =
             application.getSharedPreferences("DEFAULT_SHARD_PREFERENCES", Context.MODE_PRIVATE)
@@ -23,5 +28,14 @@ object Injection {
 
     private fun getNewsDatabase() = NewsDatabase.getInstance(application)
 
-    fun provideRepository() = NewsRepository( provideArticlesCache(), provideNewsApi())
+    private fun provideRepository(): NewsRepository {
+        synchronized(LOCK) {
+            return newsRepository
+                    ?: NewsRepository(provideArticlesCache(), provideNewsApi()).also { newsRepository = it }
+        }
+    }
+
+    fun provideViewModelFactory(): ViewModelFactory {
+        return ViewModelFactory(provideRepository())
+    }
 }

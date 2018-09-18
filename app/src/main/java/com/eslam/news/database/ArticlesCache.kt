@@ -4,10 +4,9 @@ import android.annotation.SuppressLint
 import android.arch.paging.DataSource
 import android.content.SharedPreferences
 import com.eslam.news.model.Article
-import io.reactivex.Maybe
 import java.util.concurrent.Executor
 
-class ArticlesCache(private val database: NewsDatabase, private val executor: Executor, private val sharedPreferences: SharedPreferences) {
+open class ArticlesCache(private val database: NewsDatabase, private val executor: Executor, private val sharedPreferences: SharedPreferences) {
     fun insertArticles(articles: List<Article?>?) {
         executor.execute {
             database.articlesDao().insert(articles)
@@ -20,7 +19,7 @@ class ArticlesCache(private val database: NewsDatabase, private val executor: Ex
         }
     }
 
-    fun getFavoriteArticles(): Maybe<List<Article>> = database.articlesDao().getFavoriteArticles()
+    fun getFavoriteArticles() = database.articlesDao().getFavoriteArticles()
 
     fun getAllArticles(): DataSource.Factory<Int, Article> = database.articlesDao().getAllArticles()
 

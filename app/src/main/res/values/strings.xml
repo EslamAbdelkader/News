@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">News</string>
+
+    <string name="error_msg">There happened to be a problem :(</string>
+    <string name="tab_1">Feed</string>
+    <string name="tab_2">Favorites</string>
 </resources>

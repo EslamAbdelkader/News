@@ -11,4 +11,8 @@ data class Article(
         @SerializedName("urlToImage") var urlToImage: String?,
         @SerializedName("publishedAt") var publishedAt: String?,
         var favorite: Boolean?
-)
+){
+    override fun equals(other: Any?): Boolean {
+        return other is Article && other.title == title
+    }
+}
