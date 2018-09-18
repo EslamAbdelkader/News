@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import com.eslam.news.R
 import com.eslam.news.model.Article
 import com.eslam.news.model.NetworkState
-import com.eslam.news.ui.viewmodel.ArticlesViewModel
 import com.eslam.news.ui.holder.ArticleViewHolder
 import com.eslam.news.ui.holder.NetworkViewHolder
+import com.eslam.news.ui.viewmodel.ArticlesViewModel
 import com.eslam.news.utils.ArticleComparator
+import com.eslam.news.utils.isSameDate
 
 class ArticlesAdapter(private val viewModel: ArticlesViewModel) : ListAdapter<Article, RecyclerView.ViewHolder>(ArticleComparator) {
     private var networkState: NetworkState = NetworkState.loading()
@@ -27,6 +28,11 @@ class ArticlesAdapter(private val viewModel: ArticlesViewModel) : ListAdapter<Ar
         if (holder is ArticleViewHolder) {
             val item = getItem(position)
             holder.bind(item)
+            if (position == 0 || !isSameDate(getItem(position).getDate(), getItem(position - 1).getDate())) {
+                // TODO Show Day Above
+            } else {
+                // Hide Day Above
+            }
             holder.star.setOnClickListener {
                 viewModel.toggleFavorite(item)
                 notifyItemChanged(position)

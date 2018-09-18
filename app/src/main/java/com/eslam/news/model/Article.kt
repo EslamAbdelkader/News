@@ -1,8 +1,11 @@
 package com.eslam.news.model
 
+import android.annotation.SuppressLint
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Entity(tableName = "articles")
 data class Article(
@@ -14,5 +17,14 @@ data class Article(
 ){
     override fun equals(other: Any?): Boolean {
         return other is Article && other.title == title
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getDate(): Date {
+        return SimpleDateFormat(DATE_FORMAT).parse(publishedAt)
+    }
+
+    companion object {
+        private const val DATE_FORMAT = "YYYY-MM-DD'T'hh:mm:ss'Z'"
     }
 }
