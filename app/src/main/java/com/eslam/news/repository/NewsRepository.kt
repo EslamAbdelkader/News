@@ -2,6 +2,11 @@ package com.eslam.news.repository
 
 import android.arch.lifecycle.MutableLiveData
 import com.eslam.news.api.NewsApi
+import com.eslam.news.api.NewsApi.Companion.API_KEY
+import com.eslam.news.api.NewsApi.Companion.DEFAULT_LANGUAGE
+import com.eslam.news.api.NewsApi.Companion.DEFAULT_NETWORK_PAGES_IZE
+import com.eslam.news.api.NewsApi.Companion.DEFAULT_SORT
+import com.eslam.news.api.NewsApi.Companion.DEFAULT_SOURCES
 import com.eslam.news.database.ArticlesCache
 import com.eslam.news.model.Article
 import com.eslam.news.model.NetworkState
@@ -40,16 +45,6 @@ open class NewsRepository(private val articlesCache: ArticlesCache,
     open fun updateArticle(article: Article){
         articlesCache.updateArticle(article)
     }
-
-    companion object {
-        private const val DEFAULT_LOCAL_PAGE_SIZE = 10
-        private const val DEFAULT_NETWORK_PAGES_IZE = 30
-        private const val API_KEY = "641b974a714a4946910423a67f938fe1"
-        private const val DEFAULT_SOURCES = "usa-today"
-        private const val DEFAULT_LANGUAGE = "en"
-        private const val DEFAULT_SORT = "publishedAt"
-    }
-
 
     private fun getDefaultNews(page: Int) =
             articlesApi.getNews(API_KEY, DEFAULT_SOURCES, DEFAULT_LANGUAGE, DEFAULT_SORT, DEFAULT_NETWORK_PAGES_IZE, page)

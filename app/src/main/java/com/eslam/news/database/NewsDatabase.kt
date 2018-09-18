@@ -6,13 +6,8 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import com.eslam.news.model.Article
 
-@Database(
-        entities = [Article::class],
-        version = 1,
-        exportSchema = false
-)
+@Database(entities = [Article::class], version = 1, exportSchema = false)
 abstract class NewsDatabase : RoomDatabase() {
-
     abstract fun articlesDao(): ArticleDao
 
     companion object {
