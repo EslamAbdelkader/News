@@ -1,14 +1,16 @@
-package com.eslam.news.ui
+package com.eslam.news.ui.adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.eslam.news.ui.fragment.FavoriteFragment
+import com.eslam.news.ui.fragment.FeedFragment
 
 class MainViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
     override fun getItem(p0: Int): Fragment {
         return when(p0){
-            0->FeedFragment()
-            1->FavoriteFragment()
+            0-> FeedFragment()
+            1-> FavoriteFragment()
             else-> Fragment()
         }
     }

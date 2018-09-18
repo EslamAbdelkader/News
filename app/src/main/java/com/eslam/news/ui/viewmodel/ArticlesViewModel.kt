@@ -1,4 +1,4 @@
-package com.eslam.news.ui
+package com.eslam.news.ui.viewmodel
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData

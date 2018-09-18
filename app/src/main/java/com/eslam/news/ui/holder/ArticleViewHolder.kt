@@ -1,4 +1,4 @@
-package com.eslam.news.ui
+package com.eslam.news.ui.holder
 
 import android.content.Intent
 import android.net.Uri

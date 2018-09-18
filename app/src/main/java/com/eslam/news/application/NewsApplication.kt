@@ -1,4 +1,4 @@
-package com.eslam.news
+package com.eslam.news.application
 
 import android.app.Application
 import com.eslam.news.di.Injection

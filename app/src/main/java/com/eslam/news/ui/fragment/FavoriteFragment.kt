@@ -1,4 +1,4 @@
-package com.eslam.news.ui
+package com.eslam.news.ui.fragment
 
 
 import android.arch.lifecycle.Observer
@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.eslam.news.R
 import com.eslam.news.di.Injection
+import com.eslam.news.ui.viewmodel.ArticlesViewModel
+import com.eslam.news.ui.adapter.FavoriteAdapter
 import kotlinx.android.synthetic.main.fragment_feed.*
 
 class FavoriteFragment : Fragment() {

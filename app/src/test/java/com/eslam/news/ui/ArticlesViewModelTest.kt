@@ -6,6 +6,7 @@ import com.eslam.news.model.Article
 import com.eslam.news.model.NetworkState
 import com.eslam.news.model.Result
 import com.eslam.news.repository.NewsRepository
+import com.eslam.news.ui.viewmodel.ArticlesViewModel
 import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Assert.assertEquals
 import org.junit.Before

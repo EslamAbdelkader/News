@@ -1,4 +1,4 @@
-package com.eslam.news.ui
+package com.eslam.news.ui.adapter
 
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.RecyclerView
@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import com.eslam.news.R
 import com.eslam.news.model.Article
 import com.eslam.news.model.NetworkState
+import com.eslam.news.ui.viewmodel.ArticlesViewModel
+import com.eslam.news.ui.holder.ArticleViewHolder
+import com.eslam.news.ui.holder.NetworkViewHolder
 import com.eslam.news.utils.ArticleComparator
 
 class ArticlesAdapter(private val viewModel: ArticlesViewModel) : ListAdapter<Article, RecyclerView.ViewHolder>(ArticleComparator) {

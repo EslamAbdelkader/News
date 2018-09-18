@@ -6,7 +6,7 @@ import com.eslam.news.api.NewsApi
 import com.eslam.news.database.ArticlesCache
 import com.eslam.news.database.NewsDatabase
 import com.eslam.news.repository.NewsRepository
-import com.eslam.news.ui.ViewModelFactory
+import com.eslam.news.ui.viewmodel.ViewModelFactory
 import java.util.concurrent.Executors
 
 object Injection {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.eslam.news.ui
+package com.eslam.news.ui.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

@@ -1,4 +1,4 @@
-package com.eslam.news.ui
+package com.eslam.news.ui.activity
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.eslam.news.R
 import com.eslam.news.di.Injection
+import com.eslam.news.ui.adapter.MainViewPagerAdapter
+import com.eslam.news.ui.viewmodel.ArticlesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
