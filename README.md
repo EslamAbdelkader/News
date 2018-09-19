@@ -16,5 +16,8 @@ And for the unit testing I've used **Junit, Mockito and Mokito-Kotlin.**
 
 The app is written 100 percent in Kotlin, and it follows SOLID principles and reactive programming concepts as much as possible.
 
-**Note:**
+**Notes:**
+
 I first thought of using Android new Paging library, but I've faced a few performance and architectural issues, so I've implemented the pagination natively. Non-complete samples of the approach of using Paging library can be found on those branches https://github.com/EslamAbdelkader/News/tree/firstApproach https://github.com/EslamAbdelkader/News/tree/secondApproach
+
+The application's minSdkVersion is 24, because it uses kotlin.forEach which uses java streams that are only supported starting API 24.
